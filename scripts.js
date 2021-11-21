@@ -25,7 +25,7 @@ class DatosMeteorologicos {
 };
 
 // Función asíncrona mediante la cual obtenemos los datos ofrecidos por la AEMET.
-async function obtenerDatosObservacion(url) {
+async function obtenerDatosMeteorologicos(url) {
   try {
     // Petición de datos y conversión a formato Json.
     const request = await fetch(url);
@@ -33,15 +33,15 @@ async function obtenerDatosObservacion(url) {
     console.log(data);
 
     // Utilizamos map para instanciar cada uno de los elementos del array.
-    const dataObject = data.map((elemento) => new DatosMeteorologicos(elemento.alt, elemento.dmax, elemento.dv, elemento.fint, elemento.hr, elemento.idema, elemento.lat, elemento.lon, elemento.prec, elemento.ta, elemento.tamax, elemento.tamin, elemento.ubi, elemento.vmax, elemento.vv));
+    const dataMeteorologicos = data.map((elemento) => new DatosMeteorologicos(elemento.alt, elemento.dmax, elemento.dv, elemento.fint, elemento.hr, elemento.idema, elemento.lat, elemento.lon, elemento.prec, elemento.ta, elemento.tamax, elemento.tamin, elemento.ubi, elemento.vmax, elemento.vv));
     
     // Mediante esta iteración, convertimos en array las propiedades del objeto.
-    var listaValores = [];
-    for (let i = 0; i < dataObject.length; i++) {     
-      listaValores.push(dataObject[i].ta);  //Aquí hemos elegido la temperatura máxima(ta).
+    let listaValores = [];
+    for (let i = 0; i < dataMeteorologicos.length; i++) {     
+      listaValores.push(dataMeteorologicos[i].ta);  //Aquí hemos elegido la temperatura máxima(ta).
     }
 
-    dataObject[0].informacion();  // Mostramos información de la población.
+    dataMeteorologicos[0].informacion();  // Mostramos información de la población.
     console.log(listaValores);  // Mostramos el array
 
   } catch (error) {
@@ -52,4 +52,4 @@ async function obtenerDatosObservacion(url) {
 // Dirección web de la población de la cual queremos obtener los datos metereológicos.
 const url = "https://opendata.aemet.es/opendata/sh/4323e5d3"; 
 
-obtenerDatosObservacion(url);
+obtenerDatosMeteorologicos(url);
