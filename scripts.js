@@ -30,7 +30,14 @@ async function obtenerDatosMeteorologicos(url) {
     // Petición de datos y conversión a formato Json.
     const request = await fetch(url);
     const data = await request.json();
-    console.log(data);
+    // console.log(data);
+    
+    // Manejo de los errores recibidos desde la AEMET.
+    if (data.descripcion === undefined) {
+      console.log("Los datos se han obtenido correctamente.");
+    } else {
+      console.log(`Mensaje recibido: ${data.descripcion}`);
+    };    
 
     // Utilizamos map para instanciar cada uno de los elementos del array.
     const dataMeteorologicos = data.map((elemento) => new DatosMeteorologicos(elemento.alt, elemento.dmax, elemento.dv, elemento.fint, elemento.hr, elemento.idema, elemento.lat, elemento.lon, elemento.prec, elemento.ta, elemento.tamax, elemento.tamin, elemento.ubi, elemento.vmax, elemento.vv));
@@ -39,15 +46,15 @@ async function obtenerDatosMeteorologicos(url) {
     let listaValores = [];
     for (let i = 0; i < dataMeteorologicos.length; i++) {     
       listaValores.push(dataMeteorologicos[i].ta);  //Aquí hemos elegido la temperatura máxima(ta).
-    }
+    };
 
     dataMeteorologicos[0].informacion();  // Mostramos información de la población.
     console.log(listaValores);  // Mostramos el array
 
   } catch (error) {
-    console.log(error);
-  }
-}
+    console.log("Lo siento... No se han podido cargar los datos.");
+  };
+};
 
 // Dirección web de la población de la cual queremos obtener los datos metereológicos.
 const url = "https://opendata.aemet.es/opendata/sh/4323e5d3"; 
