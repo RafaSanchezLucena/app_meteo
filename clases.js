@@ -1,10 +1,10 @@
-export class DatosMeteorologicos {constructor(alt, dmax, dv, fint, hr, idema, lat, lon, prec, ta, tamax, tamin, ubi, vmax, vv) {
+export class DatosMeteorologicos {
+  constructor(alt, dmax, dv, fint, hr, lat, lon, prec, ta, tamax, tamin, ubi, vmax, vv) {
     this.alt = alt;
     this.dmax = dmax;
     this.dv = dv;
     this.fint = fint;
     this.hr = hr;
-    this.idema = idema;
     this.lat = lat;
     this.lon = lon;
     this.prec = prec;
@@ -18,7 +18,7 @@ export class DatosMeteorologicos {constructor(alt, dmax, dv, fint, hr, idema, la
 
   informacion() {
     console.log(
-      `Los datos se obtienen de la población de ${this.ubi}, que está a una altitud de ${this.alt} metros, latitud: ${this.lat} y longitud: ${this.lon}.`
+      `Los datos se obtienen de la población de ${this.ubi}, situada a una altitud de ${this.alt} metros, latitud: ${this.lat} y longitud: ${this.lon}.`
     );
   };
 };

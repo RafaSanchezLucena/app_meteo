@@ -8,4 +8,24 @@
 body {
     width: 100%;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    height: 2em;
+    width: 150%;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    
+    
+}
+
+button:hover {
+    color: #000;
+    background-color: #fff;
 }
